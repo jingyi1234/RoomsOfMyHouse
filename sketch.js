@@ -31,12 +31,12 @@ var gTextOffset = 20;
 
 // load all images into an array
 function preload() {
-  images[0] = loadImage('assets/gameroom.png');
-  images[1] = loadImage('assets/kitchen.png');
-  images[2] = loadImage('assets/office.png');
-  images[3] = loadImage('assets/restroom.png');
-  images[4] = loadImage('assets/bedroom.png');
-  images[5] = loadImage('assets/livingroom.png');
+  images[0] = loadImage('assets/livingroom.png');
+  images[1] = loadImage('assets/gameroom.png');
+  images[2] = loadImage('assets/kitchen.png');
+  images[3] = loadImage('assets/office.png');
+  images[4] = loadImage('assets/restroom.png');
+  images[5] = loadImage('assets/bedroom.png');
 }
 
 // Center drawing, drawFunction will be one for default
@@ -49,7 +49,7 @@ function setup() {
   textSize(40);
 
   // set to one for startup
-  drawFunction = drawSplash;
+  drawFunction = drawLivingroom;
 }
 
 // Very simple, sets the background color and calls your state machine function
@@ -62,78 +62,79 @@ function draw() {
 
 
 //-- drawOne() will draw the image at index 0 from the array
-drawOne = function() {
+drawLivingroom = function() {
    image(images[0],width/2, height/2);
 
    fill(0,0,0);
-   text("Gameroom state 1", width/2, height - gTextOffset);
+   text("Livingroom", width/2, height - gTextOffset);
 }
 
 //-- drawTwo() will draw the image at index 1 from the array
-drawTwo = function() {
+drawGameroom = function() {
    image(images[1],width/2, height/2);
 
    fill(240,120,0);
-   text("Kitchen State 2", width/2, height - gTextOffset);
+   text("Gameroom", width/2, height - gTextOffset);
 }
 
 //-- drawOne() will draw the image at index 2 from the array
-drawThree = function() {
+drawKitchen = function() {
    image(images[2],width/2, height/2);
 
    fill(40,230,120);
-   text("Office State 3", width/2, height - gTextOffset);
+   text("Kitchen", width/2, height - gTextOffset);
 }
 
 //-- drawOne() will draw the image at index 3 from the array
-drawFour = function() {
+drawOffice = function() {
    image(images[3],width/2, height/2);
 
    fill(0,128,128);
-   text("Restroom State 4", width/2, height - gTextOffset);
+   text("Office", width/2, height - gTextOffset);
 }
 
 //-- drawOne() will draw the image at index 4 from the array
-drawFive = function() {
+drawRestroom = function() {
    image(images[4],width/2, height/2);
 
    fill(230,50,50);
-   text("Bedroom State 5", width/2, height - gTextOffset);
+   text("Restroom", width/2, height - gTextOffset);
 }
 
 //-- drawSplash() will draw the image at index 4 from the array
-drawSplash = function() {
+drawBedroom = function() {
    image(images[5],width/2, height/2);
 
    fill(218,165,32);
-   text("Livingroom s", width/2, height - gTextOffset);
+   text("Bedroom", width/2, height - gTextOffset);
 }
 
 
 // Change the drawFunction variable based on your interaction
 function keyTyped() {
-  if( drawFunction === drawSplash ) {
-    return;
-  }
+  if( drawFunction === drawLivingroom ) {
+    if( keyCode === LEFT_ARROW ) {
+        drawFunction = drawBedroom;
+    }
 
   if( key === '1' ) {
-  	drawFunction = drawOne;
+  	drawFunction = drawGameroom;
   }
   else if( key === '2' ) {
-  	drawFunction = drawTwo;
+  	drawFunction = drawKitchen;
   }
   else if( key === '3' ) {
-  	drawFunction = drawThree;
+  	drawFunction = drawOffice;
   }
   else if( key === '4' ) {
-  	drawFunction = drawFour;
+  	drawFunction = drawRestroom;
   }
   else if( key === '5' ) {
-  	drawFunction = drawFive;
+  	drawFunction = drawBedroom;
   }
 
   else if( key === 's' ) {
-    drawFunction = drawSplash;
+    drawFunction = drawLivingroom;
   }
 }
 
